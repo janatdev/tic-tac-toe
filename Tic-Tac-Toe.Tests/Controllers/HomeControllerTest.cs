@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Tic_Tac_Toe;
 using Tic_Tac_Toe.Controllers;
+using Tic_Tac_Toe.Models;
 
 namespace Tic_Tac_Toe.Tests.Controllers
 {
@@ -13,18 +14,26 @@ namespace Tic_Tac_Toe.Tests.Controllers
     public class HomeControllerTest
     {
         [TestMethod]
-        public void Index()
+        public void IsGameOverTest()
         {
-            // Arrange
-            HomeController controller = new HomeController();
+            var sut = new TicTacToeGame();
+            var actual = sut.IsGameOver;
 
-            // Act
-            ViewResult result = controller.Index() as ViewResult;
+            Assert.AreEqual(false, actual);
+        }       
 
-            // Assert
-            Assert.IsNotNull(result);
+        [TestMethod]
+        public void CheckWinner()
+        {
+
+            var sut = new TicTacToeGame();
+
+            var actual = sut.DoesPlayerWinWithPlay('X',8); 
+
+            Assert.AreEqual(false, actual);
+
         }
-
+        
         [TestMethod]
         public void About()
         {
